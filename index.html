@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0056b3;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .login-page {
+            background-color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        .login-forme {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .mensagem {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-page">
+        <div class="forme">
+            <form action="" class="login-forme">
+                <input type="text" placeholder="Usuário">
+                <input type="password" placeholder="Senha">
+                <button type="submit">Entrar</button>
+            </form>
+            <p class="mensagem">Não tem uma Conta? <a href="cadastro.html">Cadastre-se!</a></p>
+        </div>
+    </div>
+    <script>
+       const forme = document.querySelector('.login-forme')
+
+// Seleciona o campo de entrada
+const usuarioInput = forme.querySelector("input[type='text']")
+
+// Dessa forma identificamos a tag pelo tipo do inputdela, usamos o form ao invés do documento para onde o código deve procurar esse input
+
+const senhaInput = forme.querySelector("input[type='password']")
+
+// Seleciona o campo de entrada da senha
+
+forme.addEventListener('submit', (event) => {
+    // Adicionar o event.preventDefault() evita que a página seja recarregada quando o botão for apertado
+    event.preventDefault();
+
+    // Obtém os valores dos campos de entrada do usuário e senha
+
+    const usuario = usuarioInput.value.trim();
+    const senha = senhaInput.value.trim();
+
+    if(usuario === '' || senha === '') {
+        alert("Por favor preencha os campos");
+    } else if (usuario === 'usuario' && senha === 'senha') {
+        // Verifica se as informações de login e senha estão corretas
+        alert("Bem vindo!")
+        location.replace("/tarefa/tarefa.html", "_self")
+    } else {
+        // Exibe uma mensagem de erro se as informações estiverem, erradas
+        alert( "Usuário ou senha incorreto, tente novamente" )
+    
+    }
+
+}) 
+    </script>
+</body>
+</html>

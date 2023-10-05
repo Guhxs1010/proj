@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Tarefas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0056b3;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            margin-top: 200px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .form {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        #input {
+            flex-grow: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Tarefas</h1>
+
+        <form class="form">
+            <input type="text" id="input" placeholder="Adicione uma tarefa">
+            <button type="submit">Adicionar</button>
+        </form>
+
+        <ul id="lista"></ul>
+    </div>
+
+    <script>
+        const form = document.querySelector('.form');
+        const input = document.getElementById('input');
+        const lista = document.getElementById('lista');
+
+        let todas = [];
+
+        function listarTarefas() {
+            lista.innerHTML = '';
+            for (let i = 0; i < todas.length; i++) {
+                const toda = todas[i];
+
+                const li = document.createElement('li');
+                const span = document.createElement('span');
+                const button = document.createElement('button');
+
+                span.innerHTML = toda;
+                button.innerHTML = 'Excluir';
+                button.addEventListener('click', function () {
+                    todas.splice(i, 1);
+                    listarTarefas();
+                });
+
+                li.appendChild(span);
+                li.appendChild(button);
+                lista.appendChild(li);
+            }
+        }
+
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const texto = input.value.trim();
+
+            if (texto.length === 0) {
+                return;
+            }
+
+            todas.push(texto);
+            input.value = '';
+            listarTarefas();
+        });
+
+        listarTarefas();
+    </script>
+</body>
+</html>

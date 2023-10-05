@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+   <h1>Cadastro</h1>
+   <form class="form">
+   <input type="text" placeholder="Nome">
+   <input type="email" placeholder="Seu Melhor Email">
+   <input class="senha1" type="password" placeholder="Senha">
+   <input class="senha2" type="password" placeholder="Digite Novamente sua Senha">
+   <button type="submit">Confirmar</button>
+   
+</form>
+</div>
+   <script>
+    const container = document.querySelector('.form')
+    const nomeInput =  container.querySelector("input[type ='text']")
+    const emailInput = container.querySelector("input[type='email']")
+    const senhaInput = document.querySelector('.senha2')
+    const confrimarInput = document.querySelector('.senha1')
+
+    container.addEventListener("submit", function () {
+        const confirmar = confrimarInput.value.trim();
+        const nome = nomeInput.value.trim();
+        const email = emailInput.value.trim();
+        const senha = senhaInput.value.trim();
+    if(senha != confirmar){
+      alert("As Senhas não são iguais!")
+    } else {
+    if(email === '' || senha === '') {
+        alert("Por favor preencha os campos");
+    }else if( senha === 'senha'){
+        alert("Bem vindo!")
+        // location.replace("google.com", "_blank")0
+        location.href("google.com")
+    } else {
+        alert( "Usuário ou senha incorreto, tente novamente" )
+    
+    }}
+})
+   </script>
+    
+</body>
+</html>
